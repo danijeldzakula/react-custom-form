@@ -5,7 +5,7 @@ import { Button, Card } from "reactstrap";
 export default function ResultAds({ regions, cities, results, handleDelete }) {
   const getRegionById = useCallback((id) => {
     // eslint-disable-next-line react/prop-types
-    const findRegion = regions.find(({ region }) => region.toString() === id.toString());
+    const findRegion = regions.find(({ region }) => +region === +id);
 
     if (findRegion) {
       return findRegion.value;
@@ -14,7 +14,7 @@ export default function ResultAds({ regions, cities, results, handleDelete }) {
 
   const getCityById = useCallback((region) => {
     // eslint-disable-next-line react/prop-types
-    const findCity = cities.find(({ id }) => id.toString() === region.toString());
+    const findCity = cities.find(({ id }) => +id === region);
 
     if (findCity) {
       return findCity.value;
@@ -30,7 +30,7 @@ export default function ResultAds({ regions, cities, results, handleDelete }) {
     // eslint-disable-next-line react/prop-types
     return results.map((result, idx) => {
       return (
-        <Card key={idx} className="mt-4 p-4">
+        <Card key={idx} className="mt-4">
           <p>{result.title}</p>
           <p>{result.description}</p>
           <p>{getRegionById(result.region)}</p>
