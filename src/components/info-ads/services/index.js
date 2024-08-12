@@ -1,4 +1,4 @@
-export default class API {
+class API {
     static async getAllRegions() {
         try {
             const response = await fetch('server/regions.json');
@@ -19,3 +19,5 @@ export default class API {
         }
     }
 }
+
+export { API };

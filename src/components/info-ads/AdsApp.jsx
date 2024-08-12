@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import CreateAd from "./CreateAd";
 import ResultAds from "./ResultAds";
-import API from "./services";
+import { API } from "./services";
 
 export default function AdsApp() {
   const initialState = {
@@ -19,10 +19,12 @@ export default function AdsApp() {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
+    // Fetch All Regions.json file
     API.getAllRegions()
       .then((data) => setRegions(data))
       .catch((err) => console.error(err));
 
+    // Fetch All Cities.json file
     API.getAllCities()
       .then((data) => setCities(data))
       .catch((err) => console.error(err));
@@ -44,8 +46,19 @@ export default function AdsApp() {
 
   return (
     <div>
-      <CreateAd form={form} onChange={onChange} onSubmit={onSubmit} regions={regions} cities={filteredCities} />
-      <ResultAds results={results} regions={regions} cities={cities} />
+      <CreateAd 
+        form={form} 
+        onChange={onChange} 
+        onSubmit={onSubmit} 
+        regions={regions} 
+        cities={filteredCities} 
+      />
+      
+      <ResultAds 
+        results={results} 
+        regions={regions} 
+        cities={cities} 
+      />
     </div>
   )
 }

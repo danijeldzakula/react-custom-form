@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Container } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 import FormBlock from './components/form-block';
 import NotesBlock from './components/notes-block';
@@ -13,6 +13,7 @@ import ShallowCopyBlock from './components/shallow-copy';
 import Calculator from './components/temperature/Calculator';
 import Ads from './components/ads/Ads';
 import AdsApp from './components/info-ads/AdsApp';
+import EnhancedMyComponent from './components/hoc';
 
 
 export default function App() {
@@ -169,8 +170,22 @@ export default function App() {
     [results]
   );
 
+  const [auth, setAuth] = useState(true);
+
   return (
     <main>
+      <section className='py-4'>
+        <Container>
+          <EnhancedMyComponent isLoggedIn={auth} />
+
+          {!auth ? (
+            <Button onClick={() => setAuth(true)}>Login</Button>
+          ) : (
+            <Button onClick={() => setAuth(false)}>Logout</Button>
+          )}
+        </Container>
+      </section>
+
       <section className='py-4'>
         <Container>
           <AdsApp />
