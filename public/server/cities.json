@@ -1,0 +1,6 @@
+[
+    { "id": 1, "value": "Subotica", "region": 1 },
+    { "id": 2, "value": "Palić", "region": 1 },
+    { "id": 3, "value": "Beograd", "region": 2 },
+    { "id": 4, "value": "Zemun", "region": 2 }
+]
